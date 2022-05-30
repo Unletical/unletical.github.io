@@ -7,6 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hello world</h1>
+    <ul>
+
+        <% for (const Countries of model) { %>
+            <li>
+            <%= Countries.country_ID %>,
+              <%= Countries.country %>
+              <em>(<%= Countries.population %>)</em>
+            </li>
+          <% } %>
+      
+      </ul>
 </body>
 </html>

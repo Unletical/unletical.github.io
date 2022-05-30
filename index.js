@@ -27,11 +27,17 @@ const db = new sqlite3.Database(db_name, err => {
   });
 
 
-  app.get("/", (req, res) => { {
-    // Response att visa det som finns innuti index.ejs i views mappen
-    res.render("index");
-  }});
+  app.get("/", (req, res) => {
+    const sql = "SELECT * FROM Countries ORDER BY country_ID"
+    db.all(sql, [], (err, rows) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      res.render("index", { model: rows });
+    });
+  });
 
+// Response att visa det som finns innuti index.ejs i views mappen
   app.listen(3000, () => { 
     console.log("Server started");
 })
